@@ -3,7 +3,7 @@
   isolation: isolate;
 
   width: 100%;
-  min-height: calc(100svh - 100px);
+  height: clamp(300px, 52svh, 560px);
 
   overflow-x: hidden;
   overflow-y: visible;
@@ -38,7 +38,7 @@
     "Helvetica Neue",
     sans-serif;
 
-  font-size: 9.8vw;
+  font-size: min(8vw, 15svh);
   font-weight: 900;
 
   line-height: 0.82;
@@ -62,7 +62,7 @@
   left: 50%;
 
   width: 40%;
-  height: 72%;
+  height: 94%;
 
   transform: translateX(-50%);
 }
@@ -96,7 +96,7 @@
     "Helvetica Neue",
     sans-serif;
 
-  font-size: 6.8vw;
+  font-size: min(5.5vw, 10svh);
   font-weight: 900;
 
   line-height: 0.82;
@@ -201,21 +201,17 @@
 /* ================================= */
 
 @media (min-width: 1800px) {
-  .hero {
-    min-height: 760px;
-  }
-
   .title {
-    font-size: 9.2vw;
+    font-size: min(8vw, 15svh);
   }
 
   .slogan {
-    font-size: 6.3vw;
+    font-size: min(5.5vw, 10svh);
   }
 
   .model {
     width: 38%;
-    height: 70%;
+    height: 94%;
   }
 }
 
@@ -226,28 +222,28 @@
 
 @media (max-width: 900px) {
   .hero {
-    min-height: 700px;
+    height: clamp(300px, 48svh, 480px);
   }
 
   .title {
     top: 5%;
     left: 4%;
 
-    font-size: 13vw;
+    font-size: 10vw;
   }
 
   .model {
     width: 55%;
-    height: 70%;
+    height: 85%;
 
-    left: 48%;
+    left: 50%;
   }
 
   .slogan {
     right: 4%;
     bottom: 22%;
 
-    font-size: 9vw;
+    font-size: 7vw;
   }
 
   .collection {
@@ -263,21 +259,21 @@
 
 @media (max-width: 600px) {
   .hero {
-    min-height: 760px;
+    height: clamp(300px, 46svh, 400px);
   }
 
   .title {
     left: 5%;
     top: 4%;
 
-    font-size: 19vw;
+    font-size: 16vw;
 
     line-height: 0.84;
     letter-spacing: -0.03em;
   }
 
   .model {
-    left: 47%;
+    left: 50%;
 
     width: 84%;
     height: 64%;
@@ -287,7 +283,7 @@
     right: 5%;
     bottom: 26%;
 
-    font-size: 12vw;
+    font-size: 10vw;
 
     line-height: 0.84;
     letter-spacing: -0.03em;

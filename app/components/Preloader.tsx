@@ -120,7 +120,7 @@ export default function Preloader() {
   return (
     <div
       ref={container}
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black"
+      className="fixed inset-0 z-99999 flex items-center justify-center overflow-hidden bg-black"
     >
       {/* ATTIRE */}
       <div
