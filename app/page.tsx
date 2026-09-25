@@ -1,10 +1,16 @@
-import Image from "next/image";
 import Preloader from "./components/Preloader";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Preloader />
-    </main>
+
+      <main>
+        <Navbar />
+        <Hero />
+      </main>
+    </>
   );
 }
