@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:products:repository": "tsx scripts/test-product-repository.ts",
+    "test:products:service": "tsx scripts/test-product-service.ts",
+    "test:products:api": "tsx scripts/test-product-api.ts",
+    "migrate:product-images": "tsx scripts/migrate-product-images.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
