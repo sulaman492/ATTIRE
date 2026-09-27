@@ -1,0 +1,80 @@
+.shell { min-height: 100vh; background: #ede4dd; color: #111; font-family: Arial, Helvetica, sans-serif; }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 4vw; border-bottom: 1px solid #111; }
+.brand { font-size: 32px; font-weight: 900; letter-spacing: -2px; }
+.brand span { font-size: 11px; letter-spacing: 1px; color: #ff1a0a; vertical-align: middle; margin-left: 14px; }
+.header nav { display: flex; gap: 28px; font-size: 12px; text-transform: uppercase; font-weight: 700; }
+.header a:hover, .back:hover, .actions a:hover { color: #ff1a0a; }
+.main { max-width: 1440px; margin: auto; padding: 56px 4vw 100px; }
+.footer { border-top: 1px solid #1113; margin: 0 4vw; padding: 22px 0; font-size: 10px; letter-spacing: 2px; }
+.titleRow { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 32px; border-bottom: 1px solid #111; margin-bottom: 30px; }
+.titleRow h1 { font-size: clamp(32px, 5.5vw, 76px); font-weight: 800; line-height: 1; letter-spacing: -.055em; margin-top: 15px; }
+.eyebrow { font-size: 10px; letter-spacing: 2px; font-weight: 700; }
+.red { color: #c6170a; }
+.titleRow h1 .red { color: #ff1a0a; }
+.button, .outlineButton { display: inline-flex; justify-content: center; align-items: center; padding: 16px 25px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .7px; cursor: pointer; border: 1px solid #ff1a0a; }
+.button { background: #ff1a0a; color: #111; }
+.button:hover { background: #e51708; }
+.outlineButton { background: transparent; border-color: #111; }
+.outlineButton:hover { background: #111; color: #ede4dd; }
+.shell button:disabled, .shell fieldset:disabled { opacity: .6; cursor: wait; }
+.shell :is(a, button, input, textarea):focus-visible { outline: 2px solid #111; outline-offset: 4px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #111; }
+.stats > div { padding: 35px 20px 40px; border-right: 1px solid #1113; }
+.stats > div:first-child { padding-left: 0; }
+.stats > div:last-child { border-right: 0; }
+.stats span { display: block; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+.stats strong { display: block; font-size: clamp(50px, 8vw, 110px); line-height: 1.2; font-weight: 500; letter-spacing: -5px; }
+.overviewBottom { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 70px; }
+.overviewBottom h2 { font-size: clamp(25px, 3vw, 40px); line-height: 1.15; letter-spacing: -1.5px; }
+.small { font-size: 12px; color: #514942; line-height: 1.6; }
+.tableWrap { overflow-x: auto; margin-top: 20px; }
+.table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+.table th { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; padding: 16px 12px; border-bottom: 1px solid #111; }
+.table td { padding: 18px 12px; border-bottom: 1px solid #1113; }
+.table th:first-child, .table td:first-child { padding-left: 0; }
+.productCell { display: flex; align-items: center; gap: 18px; min-width: 230px; font-weight: 700; }
+.thumbnail { position: relative; width: 64px; height: 78px; flex-shrink: 0; background: #d5d0ca; display: grid; place-items: center; font-size: 9px; }
+.thumbnail img, .preview img { object-fit: cover; }
+.actions { display: flex; gap: 20px; }
+.actions button, .removeImage { color: #b81508; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.nowrap { white-space: nowrap; }
+.notice, .error { padding: 18px; margin-bottom: 24px; border: 1px solid #111; font-size: 13px; line-height: 1.6; }
+.notice { background: #e0e5d7; }
+.error { border-color: #b81508; color: #a41207; }
+.error a, .error button { margin-left: 12px; text-decoration: underline; cursor: pointer; }
+.empty { padding: 65px 0; }
+.empty h2 { font-size: 28px; letter-spacing: -1px; }
+.empty p { margin: 12px 0 25px; }
+.back { display: inline-block; margin-bottom: 32px; font-size: 12px; }
+.formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; border: 0; padding: 0; min-width: 0; }
+.formGrid h2 { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin: 15px 0 25px; }
+.details label { display: flex; flex-direction: column; gap: 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 28px; }
+.details input, .details textarea { background: transparent; border: 0; border-bottom: 1px solid #111; padding: 12px 0; border-radius: 0; width: 100%; font-size: 15px; text-transform: none; letter-spacing: normal; }
+.details textarea { resize: vertical; }
+.details input:focus, .details textarea:focus { border-color: #ff1a0a; }
+.fieldPair { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.upload { display: block; margin: 20px 0; padding: 20px; border: 1px dashed #111; text-align: center; font-size: 12px; text-transform: uppercase; cursor: pointer; }
+.upload input { display: block; width: 100%; margin-top: 12px; font-size: 11px; }
+.upload input::file-selector-button { padding: 8px 12px; border: 1px solid #111; margin-right: 12px; cursor: pointer; }
+.imageGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.imageCard { border: 1px solid #1113; padding: 8px; min-width: 0; }
+.selectedImage { border: 2px solid #ff1a0a; padding: 7px; }
+.preview { position: relative; width: 100%; aspect-ratio: .85; background: #d5d0ca; }
+.radioLabel { display: flex; gap: 6px; align-items: center; font-size: 11px; margin: 12px 0 8px; }
+.radioLabel input { accent-color: #ff1a0a; }
+.removeImage { font-size: 10px; }
+.emptyImages { padding: 40px 15px; text-align: center; font-size: 13px; color: #655d57; line-height: 1.8; }
+.formFooter { border-top: 1px solid #111; padding-top: 25px; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 12px; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 700px) {
+  .header { flex-wrap: wrap; padding: 20px; }
+  .header nav { width: 100%; justify-content: space-between; gap: 10px; font-size: 10px; }
+  .main { padding: 35px 20px 65px; }
+  .titleRow { align-items: flex-start; flex-direction: column; }
+  .stats > div { padding: 20px 10px; }
+  .stats span { min-height: 30px; font-size: 9px; }
+  .stats strong { letter-spacing: -3px; }
+  .overviewBottom, .formFooter { flex-direction: column; align-items: flex-start; }
+  .formGrid { grid-template-columns: 1fr; gap: 25px; }
+  .button { min-height: 44px; }
+}
