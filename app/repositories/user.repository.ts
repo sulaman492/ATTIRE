@@ -1,5 +1,10 @@
 import pool from "@/app/lib/db";
 
+export async function findUserRoleById(userId: string) {
+  const result = await pool.query<{ role: string }>("SELECT role FROM users WHERE id = $1", [userId]);
+  return result.rows[0] ?? null;
+}
+
 
 // ========================================
 // FIND USER BY EMAIL

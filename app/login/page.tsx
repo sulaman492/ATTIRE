@@ -42,7 +42,7 @@ export default function LoginPage() {
 
       // Login successful.
       // HttpOnly access/refresh cookies are set by the backend.
-      router.push("/");
+      router.push(data.user?.role === "ADMIN" ? "/admin" : "/");
       router.refresh();
     } catch (error) {
       console.error(error);
