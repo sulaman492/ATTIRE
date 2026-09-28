@@ -20,11 +20,15 @@ const rotations = [-7, 5, -4, 6, -5, 3];
 
 const letters = "ATTIRE".split("");
 
-export default function Preloader() {
+export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        onComplete();
+        return;
+      }
       const cards =
         gsap.utils.toArray<HTMLElement>(".preloader-card");
 
@@ -53,22 +57,7 @@ export default function Preloader() {
       // MAIN TIMELINE
       // -----------------------------
 
-      const tl = gsap.timeline({
-        onComplete: () => {
-          // Small pause after everything finishes
-          gsap.delayedCall(0.4, () => {
-            tl.reverse();
-          });
-        },
-
-        onReverseComplete: () => {
-          // Preloader finished reversing
-          // Hide it so homepage underneath becomes visible
-          gsap.set(container.current, {
-            display: "none",
-          });
-        },
-      });
+      const tl = gsap.timeline({ onComplete });
 
       // -----------------------------
       // CARD ANIMATION
@@ -110,6 +99,11 @@ export default function Preloader() {
 
         0
       );
+
+      // Hand off to the shared curtain instead of abruptly hiding the loader.
+      tl.addLabel("outro", "+=0.35")
+        .to(cards, { y: -24, scale: 0.94, opacity: 0, stagger: 0.025, duration: 0.3, ease: "power2.in" }, "outro")
+        .to(attireLetters, { yPercent: -110, opacity: 0, stagger: 0.025, duration: 0.3, ease: "power2.in" }, "outro");
     },
 
     {
@@ -120,6 +114,8 @@ export default function Preloader() {
   return (
     <div
       ref={container}
+      data-preloader
+      aria-hidden="true"
       className="fixed inset-0 z-99999 flex items-center justify-center overflow-hidden bg-black"
     >
       {/* ATTIRE */}
@@ -131,7 +127,7 @@ export default function Preloader() {
           z-20
           flex
           h-[96px]
-          w-[360px]
+          w-[min(360px,85vw)]
           items-center
           justify-between
           overflow-hidden
@@ -149,7 +145,7 @@ export default function Preloader() {
               className="
                 attire-letter
                 block
-                text-[82px]
+                text-[clamp(52px,15vw,82px)]
                 leading-[96px]
               "
               style={{

@@ -191,14 +191,31 @@ export async function updateImagePosition(productId: string, imageId: string, po
 }
 
 // One query gives the public catalog a consistent snapshot without N+1 queries.
-export async function getProductCatalog(productId?: string, db: Database = pool) {
+export async function getProductCatalog(
+  productId?: string,
+  db: Database = pool
+) {
   const result = await db.query<Product & { images: ProductImage[] }>(
-    `SELECT p.*, COALESCE(
-       (SELECT jsonb_agg(to_jsonb(i) ORDER BY i.position, i.created_at, i.id)
-        FROM product_images i WHERE i.product_id = p.id), '[]'::jsonb
-     ) AS images FROM products p
-     WHERE ($1::uuid IS NULL OR p.id = $1)
-     ORDER BY p.created_at DESC, p.id DESC`, [productId ?? null],
+    `
+      SELECT
+        p.*,
+        COALESCE(
+          (
+            SELECT jsonb_agg(
+              to_jsonb(i)
+              ORDER BY i.position, i.created_at, i.id
+            )
+            FROM product_images i
+            WHERE i.product_id = p.id
+          ),
+          '[]'::jsonb
+        ) AS images
+      FROM products p
+      WHERE ($1::uuid IS NULL OR p.id = $1)
+      ORDER BY p.created_at ASC, p.id ASC
+    `,
+    [productId ?? null]
   );
+
   return result.rows;
 }

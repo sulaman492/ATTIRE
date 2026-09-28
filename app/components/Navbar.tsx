@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import TransitionLink from "./TransitionLink";
 
 type NavItem = "shop" | "bag" | "login";
 
@@ -86,13 +87,13 @@ export default function Navbar() {
         </button>
 
         {/* LOGIN */}
-        <button
-          type="button"
+        <TransitionLink
+          href="/login"
           onClick={() => setActiveItem("login")}
           className={navItemClass("login")}
         >
           Login
-        </button>
+        </TransitionLink>
       </div>
     </nav>
   );

@@ -26,7 +26,7 @@ function validateInput(input: unknown, creating: boolean) {
   }
   if (creating || body.price !== undefined) {
     if ((typeof body.price !== "string" && typeof body.price !== "number") ||
-        !/^\d{1,8}(\.\d{1,2})?$/.test(String(body.price))) {
+      !/^\d{1,8}(\.\d{1,2})?$/.test(String(body.price))) {
       throw new ApiError(400, "Price must be between 0 and 99999999.99 with at most two decimal places.");
     }
     data.price = Number(body.price).toFixed(2);
@@ -40,7 +40,7 @@ function validateInput(input: unknown, creating: boolean) {
   let imageIds: string[] | undefined;
   if (body.imageIds !== undefined) {
     if (!Array.isArray(body.imageIds) || body.imageIds.length > MAX_IMAGES ||
-        body.imageIds.some((id) => typeof id !== "string")) throw new ApiError(400, "Invalid image selection.");
+      body.imageIds.some((id) => typeof id !== "string")) throw new ApiError(400, "Invalid image selection.");
     imageIds = body.imageIds as string[];
     imageIds.forEach(validateProductId);
     if (new Set(imageIds).size !== imageIds.length || (creating && imageIds.length)) throw new ApiError(400, "Invalid image selection.");

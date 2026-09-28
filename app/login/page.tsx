@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/TransitionLink";
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePageTransition } from "@/app/components/PageTransition";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const { navigate } = usePageTransition();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,8 +42,7 @@ export default function LoginPage() {
 
       // Login successful.
       // HttpOnly access/refresh cookies are set by the backend.
-      router.push(data.user?.role === "ADMIN" ? "/admin" : "/");
-      router.refresh();
+      navigate(data.user?.role === "ADMIN" ? "/admin" : "/", { refresh: true });
     } catch (error) {
       console.error(error);
       setError("Something went wrong. Please try again.");
@@ -55,6 +54,8 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen bg-[#EDE4DD] text-black flex items-center justify-center px-6">
       <div className="w-full max-w-md">
+
+        <Link href="/" className="mb-8 inline-block text-xs uppercase tracking-widest hover:text-[#ff1a0a]">← Back to store</Link>
 
         {/* Heading */}
         <h1 className="text-5xl font-bold text-center mb-12">

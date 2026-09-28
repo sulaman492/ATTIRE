@@ -65,6 +65,18 @@
   text-transform: uppercase;
 }
 
+.retryButton {
+  border: 0;
+  padding: 0;
+
+  background: transparent;
+  color: inherit;
+
+  text-decoration: underline;
+
+  cursor: pointer;
+}
+
 
 /* ================================= */
 /* GRID */
@@ -73,7 +85,8 @@
 .grid {
   display: grid;
 
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns:
+    repeat(12, 1fr);
 
   column-gap: 16px;
   row-gap: 80px;
@@ -107,15 +120,53 @@
 
 .image {
   object-fit: cover;
+}
+
+.primaryImage {
+  z-index: 1;
+}
+
+.secondaryImage {
+  z-index: 2;
+
+  pointer-events: none;
+
+  transform: translateX(-100%);
 
   transition:
     transform
-    500ms
+    700ms
     cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: transform;
 }
 
-.product:hover .image {
-  transform: scale(1.025);
+.product:hover .secondaryImage {
+  transform: translateX(0);
+}
+
+.noImage {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ff1a0a;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secondaryImage {
+    transition: none;
+  }
 }
 
 
@@ -298,7 +349,8 @@
   }
 
   .grid {
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns:
+      repeat(12, 1fr);
 
     column-gap: 14px;
     row-gap: 65px;
