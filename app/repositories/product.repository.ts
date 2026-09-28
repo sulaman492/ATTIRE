@@ -216,6 +216,5 @@ export async function getProductCatalog(
     `,
     [productId ?? null]
   );
-
   return result.rows;
 }
