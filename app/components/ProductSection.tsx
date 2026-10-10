@@ -20,9 +20,12 @@ const layouts = [
   "eight",
   "nine",
   "ten",
+  "eleven",
+  "twelve",
+  "thirteen",
 ];
 
-function ProductImages({ product }: { product: ProductView }) {
+function ProductImages({ product, slot }: { product: ProductView; slot: number }) {
   const primary =
     product.images.find((image) => image.is_primary) ??
     product.images[0];
@@ -31,8 +34,13 @@ function ProductImages({ product }: { product: ProductView }) {
     (image) => image.id !== primary?.id
   );
 
-  const sizes =
-    "(max-width: 600px) 90vw, (max-width: 1000px) 50vw, 60vw";
+  const sizes = slot < 4
+    ? "(min-width: 1024px) 25vw, 50vw"
+    : slot === 6
+      ? "(min-width: 768px) 50vw, 75vw"
+      : slot === 10
+        ? "(min-width: 768px) 32vw, 63vw"
+        : `(min-width: 768px) 19vw, ${slot === 7 || slot === 12 ? "50vw" : "38vw"}`;
 
   return (
     <div
@@ -71,6 +79,16 @@ export default function ProductSection() {
   const [products, setProducts] = useState<ProductView[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  // Repeat the reference's four-row composition for longer collections.
+  const rows: { start: number; end: number; opening: boolean }[] = [];
+  for (let start = 0; start < products.length; start += layouts.length) {
+    for (const [offset, count] of [[0, 4], [4, 3], [7, 3], [10, 3]]) {
+      if (start + offset < products.length) {
+        rows.push({ start: start + offset, end: start + offset + count, opening: offset === 0 });
+      }
+    }
+  }
 
   const load = useCallback((signal?: AbortSignal) => {
     return fetch("/api/products", {
@@ -176,39 +194,43 @@ export default function ProductSection() {
           </p>
         )}
 
-      <div className={styles.grid}>
-        {products.map((product, index) => (
-          <article
-            key={product.id}
-            className={`${styles.product} ${
-              styles[
-                layouts[
-                  index % layouts.length
-                ]
-              ]
-            }`}
-          >
-            <ProductImages product={product} />
+      <div className={styles.collection}>
+        {rows.map((row) => (
+          <div key={row.start} className={`${styles.grid} ${row.opening ? styles.openingRow : ""}`}>
+            {products.slice(row.start, row.end).map((product, index) => (
+              <article
+                key={product.id}
+                className={`${styles.product} ${
+                  styles[
+                    layouts[
+                      (row.start + index) % layouts.length
+                    ]
+                  ]
+                }`}
+              >
+                <ProductImages product={product} slot={(row.start + index) % layouts.length} />
 
-            <div className={styles.productInfo}>
-              <div className={styles.productTop}>
-                <h3>{product.name}</h3>
+                <div className={styles.productInfo}>
+                  <div className={styles.productTop}>
+                    <h3>{product.name}</h3>
 
-                <span>
-                  {formatPrice(product.price)}
-                </span>
-              </div>
+                    <span>
+                      {formatPrice(product.price)}
+                    </span>
+                  </div>
 
-              <div className={styles.category}>
-                <span className={styles.dot} />
+                  <div className={styles.category}>
+                    <span className={styles.dot} />
 
-                {product.category || "ATTIRE"}
+                    {product.category || "ATTIRE"}
 
-                {product.stock === 0 &&
-                  " / SOLD OUT"}
-              </div>
-            </div>
-          </article>
+                    {product.stock === 0 &&
+                      " / SOLD OUT"}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         ))}
       </div>
     </section>

@@ -18,7 +18,7 @@ export default function Hero() {
       {/* MODEL */}
       <div className={styles.model}>
         <Image
-          src="/hero-model.png"
+          src="/hero-model3.png"
           alt="Model wearing an ATTIRE T-shirt and black trousers"
           fill
           priority

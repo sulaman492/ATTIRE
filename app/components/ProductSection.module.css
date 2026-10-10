@@ -3,7 +3,7 @@
 
   padding:
     35px
-    20px
+    24px
     120px;
 
   background: #ede4dd;
@@ -82,19 +82,21 @@
 /* GRID */
 /* ================================= */
 
+.collection {
+  display: grid;
+  gap: 136px;
+}
+
 .grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(12, 1fr);
-
-  column-gap: 16px;
-  row-gap: 80px;
-
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 24px;
   align-items: start;
 }
 
-
+.openingRow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
 /* ================================= */
 /* PRODUCT */
 /* ================================= */
@@ -236,358 +238,69 @@
 /* DESKTOP */
 /* ================================= */
 
-.one {
-  grid-column: 1 / span 3;
+/* Each group is independent so incomplete collections retain their placement. */
+.one, .two, .three, .four {
+  grid-column: auto;
 }
 
-.two {
-  grid-column: 4 / span 3;
+.imageWrapper {
+  aspect-ratio: 3 / 4;
 }
 
-.three {
-  grid-column: 7 / span 3;
-}
+.five { grid-column: 1 / span 3; }
+.six { grid-column: 4 / span 3; }
+.seven { grid-column: 9 / -1; }
+.eight { grid-column: 1 / span 3; }
+.nine { grid-column: 6 / span 3; }
+.ten { grid-column: 9 / span 3; }
+.eleven { grid-column: 1 / span 5; }
+.twelve { grid-column: 11 / span 3; }
+.thirteen { grid-column: 14 / span 3; }
 
-.four {
-  grid-column: 10 / span 3;
-}
-
-
-/* First row image proportions */
-
-.one .imageWrapper,
-.two .imageWrapper,
-.three .imageWrapper,
-.four .imageWrapper {
-  aspect-ratio: 0.82;
-}
-
-
-/* ================================= */
-/* SECOND ROW */
-/* ================================= */
-
-.five {
-  grid-column: 1 / span 2;
-
-  margin-top: 20px;
-}
-
-.six {
-  grid-column: 3 / span 2;
-
-  margin-top: 85px;
-}
-
-.seven {
-  grid-column: 6 / span 7;
-
-  margin-top: 20px;
-}
-
-.five .imageWrapper {
-  aspect-ratio: 0.72;
-}
-
-.six .imageWrapper {
-  aspect-ratio: 0.82;
-}
-
-.seven .imageWrapper {
-  aspect-ratio: 1.55;
-}
-
-
-/* ================================= */
-/* THIRD ROW */
-/* ================================= */
-
-.eight {
-  grid-column: 1 / span 4;
-
-  margin-top: 30px;
-}
-
-.nine {
-  grid-column: 5 / span 4;
-
-  margin-top: 130px;
-}
-
-.ten {
-  grid-column: 9 / span 4;
-
-  margin-top: 20px;
-}
-
+.five .imageWrapper { aspect-ratio: 1920 / 2857; }
+.six .imageWrapper,
 .eight .imageWrapper,
-.nine .imageWrapper,
-.ten .imageWrapper {
-  aspect-ratio: 0.85;
+.ten .imageWrapper,
+.twelve .imageWrapper { aspect-ratio: 242 / 240; }
+.seven .imageWrapper { aspect-ratio: 1; }
+.nine .imageWrapper { aspect-ratio: 1920 / 2867; }
+.eleven .imageWrapper { aspect-ratio: 1920 / 2345; }
+.thirteen .imageWrapper { aspect-ratio: 1920 / 2868; }
+
+@media (max-width: 1023px) {
+  .shop { padding-inline: 16px; }
+  .openingRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .shopHeader { gap: 20px; }
 }
 
-
-/* ================================= */
-/* TABLET */
-/* ================================= */
-
-@media (max-width: 1000px) {
-  .shop {
-    padding:
-      30px
-      18px
-      90px;
-  }
-
-  .shopHeader {
-    grid-template-columns:
-      1fr
-      1.5fr
-      1fr;
-
-    gap: 20px;
-  }
-
-  .grid {
-    grid-template-columns:
-      repeat(12, 1fr);
-
-    column-gap: 14px;
-    row-gap: 65px;
-  }
-
-  .one {
-    grid-column: 1 / span 3;
-  }
-
-  .two {
-    grid-column: 4 / span 3;
-  }
-
-  .three {
-    grid-column: 7 / span 3;
-  }
-
-  .four {
-    grid-column: 10 / span 3;
-  }
-
-  .five {
-    grid-column: 1 / span 2;
-  }
-
-  .six {
-    grid-column: 3 / span 2;
-
-    margin-top: 90px;
-  }
-
-  .seven {
-    grid-column: 6 / span 7;
-  }
-
-  .productTop h3,
-  .productTop span {
-    font-size: 12px;
-  }
-}
-
-
-/* ================================= */
-/* MOBILE */
-/* ================================= */
-
-@media (max-width: 600px) {
-  .shop {
-    padding:
-      25px
-      12px
-      80px;
-  }
-
-
-  /* HEADER */
-
+@media (max-width: 767px) {
+  .shop { padding-top: 25px; }
   .shopHeader {
     grid-template-columns: 1fr 1fr;
-
     row-gap: 22px;
-
     margin-bottom: 30px;
   }
-
   .description {
     grid-column: 1 / -1;
     grid-row: 2;
-
     max-width: 320px;
-
     font-size: 10px;
   }
-
-  .links {
-    font-size: 10px;
+  .links { font-size: 10px; }
+  .grid:not(.openingRow) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
-
-
-  /* GRID */
-
-  .grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    column-gap: 10px;
-    row-gap: 48px;
-  }
-
-
-  /* Reset desktop */
-
-  .one,
-  .two,
-  .three,
-  .four,
-  .five,
-  .six,
-  .seven,
-  .eight,
-  .nine,
-  .ten {
-    grid-column: auto;
-
-    margin-top: 0;
-  }
-
-
-  /* ================================= */
-  /* FIRST TWO */
-  /* ================================= */
-
-  .one {
-    grid-column: 1;
-  }
-
-  .two {
-    grid-column: 2;
-
-    margin-top: 70px;
-  }
-
-
-  /* ================================= */
-  /* BIG PRODUCT */
-  /* ================================= */
-
-  .three {
-    grid-column: 1 / -1;
-
-    margin-top: 20px;
-  }
-
-  .three .imageWrapper {
-    aspect-ratio: 1.15;
-  }
-
-
-  /* ================================= */
-  /* SMALL PRODUCTS */
-  /* ================================= */
-
-  .four {
-    grid-column: 1;
-  }
-
-  .five {
-    grid-column: 2;
-
-    margin-top: 90px;
-  }
-
-
-  /* ================================= */
-  /* FULL WIDTH */
-  /* ================================= */
-
-  .six {
-    grid-column: 1 / -1;
-  }
-
-  .six .imageWrapper {
-    aspect-ratio: 1.3;
-  }
-
-
-  /* ================================= */
-  /* NEXT PAIR */
-  /* ================================= */
-
-  .seven {
-    grid-column: 1;
-
-    margin-top: 80px;
-  }
-
-  .eight {
-    grid-column: 2;
-  }
-
-
-  /* ================================= */
-  /* FEATURE PRODUCT */
-  /* ================================= */
-
-  .nine {
-    grid-column: 1 / -1;
-
-    margin-top: 20px;
-  }
-
-  .nine .imageWrapper {
-    aspect-ratio: 1.15;
-  }
-
-
-  /* ================================= */
-  /* FINAL */
-  /* ================================= */
-
-  .ten {
-    grid-column: 1;
-
-    margin-top: 20px;
-  }
-
-
-  /* ================================= */
-  /* PRODUCT TEXT */
-  /* ================================= */
-
-  .productTop {
-    display: block;
-  }
-
-  .productTop h3 {
-    max-width: 100%;
-
-    font-size: 11px;
-  }
-
-  .productTop span {
-    display: block;
-
-    margin-top: 2px;
-
-    font-size: 11px;
-  }
-
-  .category {
-    margin-top: 4px;
-
-    font-size: 7px;
-  }
-
-  .dot {
-    width: 5px;
-    height: 5px;
-  }
+  .seven { grid-column: 3 / 9; }
+  .eight { grid-column: 1 / span 4; }
+  .nine { grid-column: 3 / 6; }
+  .ten { grid-column: 6 / 9; }
+  .twelve { grid-column: 2 / 5; }
+  .thirteen { grid-column: 5 / 9; }
+  .productTop { flex-direction: column; gap: 4px; }
+  .productTop h3 { max-width: 100%; }
+  .productTop h3, .productTop span { font-size: 12px; }
+  .category { font-size: 8px; }
 }
