@@ -1,34 +1,66 @@
+
+/* ================================= */
+/* HERO */
+/* ================================= */
+
 .hero {
+  --cream: #ede4dd;
+  --accent: #ff1a0a;
+  --black: #000000;
+  --dark-text: #292521;
+
   position: relative;
   isolation: isolate;
 
   width: 100%;
-  height: clamp(300px, 52svh, 560px);
+  height: 100svh;
+  min-height: 650px;
 
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: hidden;
 
-  background: rgb(237, 228, 221);
-  color: #ff1a0a;
-
-  font-family:
-    Arial,
-    Helvetica,
-    "Helvetica Neue",
-    sans-serif;
+  background: var(--cream);
+  color: var(--accent);
 }
 
 
 /* ================================= */
-/* ATTIRE */
+/* LEFT CONTENT */
 /* ================================= */
 
-.title {
+.copy {
   position: absolute;
-  z-index: 1;
 
-  top: 5%;
-  left: 3%;
+  z-index: 4;
+
+  top: 48%;
+  left: 6vw;
+
+  width: 49%;
+  max-width: 680px;
+
+  transform: translateY(-50%);
+
+  padding-bottom: 35px;
+}
+
+.kicker {
+  margin: 0 0 24px;
+
+  color: var(--accent);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+
+  width: max-content;
+  max-width: 100%;
 
   margin: 0;
 
@@ -38,15 +70,82 @@
     "Helvetica Neue",
     sans-serif;
 
-  font-size: min(8vw, 15svh);
+  font-size: clamp(4rem, 7.2vw, 7.5rem);
   font-weight: 900;
 
-  line-height: 0.82;
+  line-height: 0.86;
   letter-spacing: -0.025em;
 
-  color: #ff1a0a;
+  text-transform: uppercase;
+}
 
+.headline span {
+  display: block;
   white-space: nowrap;
+}
+
+.description {
+  margin: 27px 0 0;
+
+  color: var(--dark-text);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.65;
+  letter-spacing: 0.015em;
+}
+
+
+/* ================================= */
+/* CTA */
+/* ================================= */
+
+.actions {
+  display: flex;
+  align-items: center;
+
+  margin-top: 30px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 36px;
+
+  min-height: 50px;
+  padding: 0 20px;
+
+  background: var(--black);
+  color: var(--cream);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  transition:
+    background 250ms ease,
+    color 250ms ease;
+}
+
+.cta:hover {
+  background: var(--accent);
+  color: var(--black);
+}
+
+.ctaArrow {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
 }
 
 
@@ -56,254 +155,209 @@
 
 .model {
   position: absolute;
-  z-index: 2;
 
+  z-index: 3;
+
+  right: clamp(32px, 6vw, 105px);
   bottom: 0;
-  left: 50%;
 
-  width: 40%;
-  height: 94%;
+  /*
+    86% instead of the previous 92%.
+    This scales the model down by approximately 6.5%
+    while allowing the chair to sit lower.
+  */
 
-  transform: translateX(-50%);
+  width: min(59vw, 760px);
+  height: 86%;
+
+  pointer-events: none;
 }
 
 .modelImage {
   object-fit: contain;
-  object-position: center bottom;
-
-  transform: scale(1);
-
-  transform-origin: center bottom;
+  object-position: right bottom;
 }
 
 
 /* ================================= */
-/* OWN YOUR LOOK */
+/* FLOOR SHADOW */
 /* ================================= */
 
-.slogan {
+.floorShadow {
   position: absolute;
-  z-index: 3;
 
-  right: 4%;
-  bottom: 10%;
-
-  margin: 0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    "Helvetica Neue",
-    sans-serif;
-
-  font-size: min(5.5vw, 10svh);
-  font-weight: 900;
-
-  line-height: 0.82;
-  letter-spacing: -0.025em;
-
-  color: #ff1a0a;
-}
-
-.slogan span {
-  display: block;
-}
-
-
-/* ================================= */
-/* COLLECTION */
-/* ================================= */
-
-.collection {
-  position: absolute;
   z-index: 4;
 
-  bottom: 7.5%;
-  left: 3.8%;
+  right: clamp(60px, 10vw, 180px);
+  bottom: 84px;
 
-  color: #ff1a0a;
-}
+  width: min(38vw, 480px);
+  height: 22px;
 
-.collection p {
-  margin: 0 0 16px;
+  border-radius: 50%;
 
-  font-family:
-    Arial,
-    Helvetica,
-    "Helvetica Neue",
-    sans-serif;
+  background: rgba(0, 0, 0, 0.22);
 
-  font-size: clamp(10px, 0.9vw, 15px);
-  font-weight: 700;
-
-  letter-spacing: 0.35em;
-
-  color: #ff1a0a;
+  filter: blur(16px);
+  pointer-events: none;
 }
 
 
 /* ================================= */
-/* CTA */
+/* SECONDARY RED TICKER */
 /* ================================= */
 
-.cta {
+.tickerUnderlay {
+  position: absolute;
+
+  z-index: 4;
+
+  left: 50%;
+  bottom: 84px;
+
   display: flex;
   align-items: center;
-  justify-content: center;
 
-  gap: 14px;
+  width: 112%;
+  height: 48px;
 
-  width: clamp(210px, 17.5vw, 310px);
-  min-height: 68px;
+  overflow: hidden;
 
-  padding: 16px 24px;
+  background: var(--accent);
+  color: var(--cream);
 
-  background: #000000;
-  color: rgb(237, 228, 221);
-
-  font-family:
-    Arial,
-    Helvetica,
-    "Helvetica Neue",
-    sans-serif;
-
-  font-size: clamp(17px, 1.15vw, 22px);
-  font-weight: 700;
-
-  text-decoration: none;
-
-  transition:
-    background 180ms ease,
-    gap 180ms ease;
+  transform: translateX(-50%) rotate(3deg);
 }
 
-.cta:hover {
-  background: #ff1a0a;
-  gap: 18px;
+.tickerUnderlayTrack {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  animation: marqueeReverse 27s linear infinite;
 }
 
-.cta:focus-visible {
-  outline: 2px solid #ff1a0a;
-  outline-offset: 5px;
+.tickerUnderlayGroup {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap: 38px;
+  padding-right: 38px;
 }
 
-.cta svg {
-  transition: transform 180ms ease;
+.underlayItem {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 38px;
+
+  white-space: nowrap;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
-.cta:hover svg {
-  transform: translateX(4px);
-}
-
-
-/* ================================= */
-/* LARGE SCREENS */
-/* ================================= */
-
-@media (min-width: 1800px) {
-  .title {
-    font-size: min(8vw, 15svh);
-  }
-
-  .slogan {
-    font-size: min(5.5vw, 10svh);
-  }
-
-  .model {
-    width: 38%;
-    height: 94%;
-  }
+.underlayStar {
+  font-size: 16px;
+  line-height: 1;
 }
 
 
 /* ================================= */
-/* TABLET */
+/* MAIN BLACK TICKER */
 /* ================================= */
 
-@media (max-width: 900px) {
-  .hero {
-    height: clamp(300px, 48svh, 480px);
-  }
+.ticker {
+  position: absolute;
 
-  .title {
-    top: 5%;
-    left: 4%;
+  z-index: 6;
 
-    font-size: 10vw;
-  }
+  left: 50%;
+  bottom: 74px;
 
-  .model {
-    width: 55%;
-    height: 85%;
+  display: flex;
+  align-items: center;
 
-    left: 50%;
-  }
+  width: 110%;
+  height: 55px;
 
-  .slogan {
-    right: 4%;
-    bottom: 22%;
+  overflow: hidden;
 
-    font-size: 7vw;
-  }
+  background: var(--black);
+  color: var(--cream);
 
-  .collection {
-    left: 4%;
-    bottom: 5%;
-  }
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+.tickerTrack {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  animation: marquee 32s linear infinite;
+}
+
+.tickerGroup {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap: 48px;
+  padding-right: 48px;
+}
+
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 48px;
+
+  white-space: nowrap;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.tickerStar {
+  color: var(--accent);
+
+  font-size: 19px;
+  line-height: 1;
 }
 
 
 /* ================================= */
-/* MOBILE */
+/* MARQUEE ANIMATIONS */
 /* ================================= */
 
-@media (max-width: 600px) {
-  .hero {
-    height: clamp(300px, 46svh, 400px);
+@keyframes marquee {
+  from {
+    transform: translateX(0);
   }
 
-  .title {
-    left: 5%;
-    top: 4%;
+  to {
+    transform: translateX(-50%);
+  }
+}
 
-    font-size: 16vw;
-
-    line-height: 0.84;
-    letter-spacing: -0.03em;
+@keyframes marqueeReverse {
+  from {
+    transform: translateX(-50%);
   }
 
-  .model {
-    left: 50%;
-
-    width: 84%;
-    height: 64%;
-  }
-
-  .slogan {
-    right: 5%;
-    bottom: 26%;
-
-    font-size: 10vw;
-
-    line-height: 0.84;
-    letter-spacing: -0.03em;
-  }
-
-  .collection {
-    left: 5%;
-    bottom: 4%;
-  }
-
-  .collection p {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-  }
-
-  .cta {
-    width: 210px;
-    min-height: 56px;
-
-    font-size: 16px;
+  to {
+    transform: translateX(0);
   }
 }
 
@@ -312,9 +366,204 @@
 /* ACCESSIBILITY */
 /* ================================= */
 
+.srOnly {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+
+  border: 0;
+}
+
+
+/* ================================= */
+/* TABLET */
+/* ================================= */
+
+@media (max-width: 1023px) {
+  .copy {
+    left: 4.5vw;
+    width: 53%;
+  }
+
+  .headline {
+    font-size: clamp(3.7rem, 7vw, 6.2rem);
+  }
+
+  .model {
+    right: 4.5vw;
+    width: 56vw;
+    height: 85%;
+  }
+
+  .ticker {
+    height: 50px;
+  }
+
+  .tickerItem {
+    font-size: 11px;
+  }
+}
+
+
+/* ================================= */
+/* MOBILE */
+/* ================================= */
+
+@media (max-width: 767px) {
+  .hero {
+    height: 100svh;
+    min-height: 680px;
+  }
+
+  .copy {
+    top: 11%;
+    left: 5vw;
+
+    width: 90%;
+    max-width: none;
+
+    padding-bottom: 0;
+    transform: none;
+  }
+
+  .kicker {
+    margin-bottom: 18px;
+    font-size: 9px;
+  }
+
+  .headline {
+    font-size: clamp(3.1rem, 10.8vw, 4.7rem);
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+  }
+
+  .description {
+    margin-top: 16px;
+
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .actions {
+    margin-top: 19px;
+  }
+
+  .cta {
+    min-height: 43px;
+
+    gap: 20px;
+    padding: 0 14px;
+
+    font-size: 9px;
+  }
+
+  .ctaArrow {
+    font-size: 14px;
+  }
+
+  .model {
+    right: 3vw;
+    bottom: 0;
+
+    width: 88%;
+    height: 62%;
+  }
+
+  .modelImage {
+    object-position: right bottom;
+  }
+
+  .floorShadow {
+    right: 5vw;
+    bottom: 71px;
+
+    width: 75%;
+    height: 17px;
+
+    filter: blur(13px);
+  }
+
+  .tickerUnderlay {
+    bottom: 78px;
+
+    width: 115%;
+    height: 40px;
+  }
+
+  .tickerUnderlayGroup {
+    gap: 24px;
+    padding-right: 24px;
+  }
+
+  .underlayItem {
+    gap: 24px;
+    font-size: 8px;
+  }
+
+  .ticker {
+    bottom: 68px;
+
+    width: 115%;
+    height: 43px;
+  }
+
+  .tickerGroup {
+    gap: 25px;
+    padding-right: 25px;
+  }
+
+  .tickerItem {
+    gap: 25px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .tickerStar {
+    font-size: 14px;
+  }
+}
+
+
+/* ================================= */
+/* SMALL MOBILE */
+/* ================================= */
+
+@media (max-width: 380px) {
+  .headline {
+    font-size: 10.5vw;
+  }
+
+  .description {
+    font-size: 10px;
+  }
+
+  .cta {
+    gap: 14px;
+    padding-inline: 11px;
+  }
+}
+
+
+/* ================================= */
+/* REDUCED MOTION */
+/* ================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .cta,
-  .cta svg {
+  .tickerTrack,
+  .tickerUnderlayTrack {
+    animation: none;
+  }
+
+  .cta {
     transition: none;
   }
 }

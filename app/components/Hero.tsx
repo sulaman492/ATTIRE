@@ -1,64 +1,240 @@
+
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 import styles from "./Hero.module.css";
 
+gsap.registerPlugin(useGSAP);
+
+const categories = [
+  "JEANS",
+  "T-SHIRTS",
+  "HOODIES",
+  "JACKETS",
+  "SWEATSHIRTS",
+  "EVERYDAY ESSENTIALS",
+];
+
+const secondaryItems = [
+  "NEW SEASON",
+  "ATTIRE",
+  "EVERYDAY STYLE",
+  "MADE TO STAND OUT",
+];
+
 export default function Hero() {
+  const heroRef = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      const timeline = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
+      });
+
+      timeline
+        .from("[data-hero-kicker]", {
+          y: 15,
+          autoAlpha: 0,
+          duration: 0.6,
+        })
+        .from(
+          "[data-hero-line]",
+          {
+            y: 45,
+            autoAlpha: 0,
+            duration: 0.8,
+            stagger: 0.13,
+          },
+          "-=0.25"
+        )
+        .from(
+          "[data-hero-description]",
+          {
+            y: 15,
+            autoAlpha: 0,
+            duration: 0.55,
+          },
+          "-=0.3"
+        )
+        .from(
+          "[data-hero-actions]",
+          {
+            y: 15,
+            autoAlpha: 0,
+            duration: 0.55,
+          },
+          "-=0.3"
+        )
+        .from(
+          "[data-hero-model]",
+          {
+            y: 25,
+            autoAlpha: 0,
+            scale: 0.97,
+            duration: 1,
+          },
+          "-=0.75"
+        )
+        .from(
+          "[data-hero-ticker]",
+          {
+            autoAlpha: 0,
+            duration: 0.6,
+          },
+          "-=0.45"
+        );
+    },
+    {
+      scope: heroRef,
+    }
+  );
+
   return (
     <section
+      ref={heroRef}
       className={styles.hero}
       aria-labelledby="hero-title"
     >
-      {/* ATTIRE */}
-      <h1
-        id="hero-title"
-        className={styles.title}
-      >
-        ATTIRE
-      </h1>
+      {/* LEFT CONTENT */}
+
+      <div className={styles.copy}>
+        <p
+          className={styles.kicker}
+          data-hero-kicker
+        >
+          ATTIRE — NEW COLLECTION
+        </p>
+
+        <h1
+          id="hero-title"
+          className={styles.headline}
+        >
+          <span data-hero-line>MADE TO</span>
+          <span data-hero-line>STAND OUT.</span>
+        </h1>
+
+        <p
+          className={styles.description}
+          data-hero-description
+        >
+          Everyday essentials. Elevated style.
+          <br />
+          Find pieces that feel like you.
+        </p>
+
+        <div
+          className={styles.actions}
+          data-hero-actions
+        >
+          <a
+            href="#shop"
+            className={styles.cta}
+          >
+            <span>Shop Collection</span>
+
+            <span
+              className={styles.ctaArrow}
+              aria-hidden="true"
+            >
+              ↗
+            </span>
+          </a>
+        </div>
+      </div>
 
       {/* MODEL */}
-      <div className={styles.model}>
+
+      <div
+        className={styles.model}
+        data-hero-model
+        aria-hidden="true"
+      >
         <Image
-          src="/hero-model3.png"
-          alt="Model wearing an ATTIRE T-shirt and black trousers"
+          src="/heromodel.png"
+          alt=""
           fill
           priority
+          sizes="(max-width: 767px) 90vw, 60vw"
           className={styles.modelImage}
-          sizes="(max-width: 600px) 84vw, (max-width: 900px) 55vw, 40vw"
         />
       </div>
 
-      {/* SLOGAN */}
-      <h2 className={styles.slogan}>
-        <span>OWN</span>
-        <span>YOUR</span>
-        <span>LOOK</span>
-      </h2>
+      {/* FLOOR SHADOW */}
 
-      {/* COLLECTION */}
-      <div className={styles.collection}>
-        <p>NEW COLLECTION 2026</p>
+      <div
+        className={styles.floorShadow}
+        aria-hidden="true"
+      />
 
-        <a
-          href="#shop"
-          className={styles.cta}
-        >
-          <span>Shop Collection</span>
+      {/* RED BACKGROUND TICKER */}
 
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M3 12h17m-6-6 6 6-6 6"
-              stroke="currentColor"
-              strokeWidth="1.2"
-            />
-          </svg>
-        </a>
+      <div
+        className={styles.tickerUnderlay}
+        data-hero-ticker
+        aria-hidden="true"
+      >
+        <div className={styles.tickerUnderlayTrack}>
+          {[0, 1].map((group) => (
+            <div
+              className={styles.tickerUnderlayGroup}
+              key={group}
+            >
+              {secondaryItems.map((item) => (
+                <span
+                  className={styles.underlayItem}
+                  key={`${group}-${item}`}
+                >
+                  {item}
+                  <span className={styles.underlayStar}>
+                    ✳
+                  </span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* MAIN BLACK TICKER */}
+
+      <div
+        className={styles.ticker}
+        data-hero-ticker
+        aria-hidden="true"
+      >
+        <div className={styles.tickerTrack}>
+          {[0, 1].map((group) => (
+            <div
+              className={styles.tickerGroup}
+              key={group}
+            >
+              {categories.map((category) => (
+                <span
+                  className={styles.tickerItem}
+                  key={`${group}-${category}`}
+                >
+                  {category}
+
+                  <span className={styles.tickerStar}>
+                    ✳
+                  </span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <span className={styles.srOnly}>
+        Shop jeans, T-shirts, hoodies, jackets,
+        sweatshirts and everyday essentials.
+      </span>
     </section>
   );
 }
